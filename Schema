@@ -1,0 +1,51 @@
+-- Schema of Apple Project
+
+drop table if exists stores;
+create table stores(
+	store_id		varchar(5) primary key,
+	store_name		varchar(30),
+	city			varchar(25),
+	country			varchar(25)
+);
+
+drop table if exists category;
+create table category(
+	catergory_id 	varchar(10) Primary key,
+	category_name	varchar(20)
+);
+
+drop table if exists products;
+create table products(
+	product_id		varchar(10) primary key,
+	product_name	varchar(35),
+	category_id		varchar(10),
+	launch_date		date,
+	price			float,
+	constraint fk_category	Foreign key (category_id) References category(catergory_id)
+);
+
+drop table if exists sales;
+create table sales(
+	sale_id		varchar(15) primary key,
+	sale1_date	date,
+	store_id	varchar(10),
+	product_id	varchar(10),
+	qunatity	int,
+	constraint fk_store Foreign key (store_id) References stores(store_id),
+	constraint fk_product Foreign key (product_id) References products(product_id)
+);
+
+drop table if exists warranty
+create table warranty(
+	claim_id	varchar(10) Primary key,
+	claim_date	date,
+	sale_id		varchar(15),
+	repair_statuts	varchar(15),
+	constraint fk_orders Foreign key (sale_id) References sales(sale_id)
+);
+select * from warranty
+
+
+
+
+
